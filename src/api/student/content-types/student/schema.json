@@ -47,6 +47,9 @@
       "relation": "manyToOne",
       "target": "api::lecture.lecture",
       "inversedBy": "students"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

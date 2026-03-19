@@ -64,6 +64,10 @@
       "relation": "oneToMany",
       "target": "api::student.student",
       "mappedBy": "lecture"
+    },
+    "isSessionActive": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
