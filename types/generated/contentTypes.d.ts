@@ -583,6 +583,8 @@ export interface ApiLectureLecture extends Struct.CollectionTypeSchema {
     day_of_week: Schema.Attribute.Integer;
     end_date: Schema.Attribute.Date;
     end_time: Schema.Attribute.Time;
+    isSessionActive: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -633,6 +635,7 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
       'api::student.student'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     roll_number: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
