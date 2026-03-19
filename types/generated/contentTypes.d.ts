@@ -636,6 +636,7 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    photo: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     roll_number: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

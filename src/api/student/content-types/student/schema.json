@@ -50,6 +50,9 @@
     },
     "name": {
       "type": "string"
+    },
+    "photo": {
+      "type": "string"
     }
   }
 }
