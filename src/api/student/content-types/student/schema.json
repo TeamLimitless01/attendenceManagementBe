@@ -41,6 +41,12 @@
       "relation": "oneToMany",
       "target": "api::attendence.attendence",
       "mappedBy": "student"
+    },
+    "lecture": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lecture.lecture",
+      "inversedBy": "students"
     }
   }
 }
