@@ -14,9 +14,6 @@
     "roll_number": {
       "type": "string"
     },
-    "class_id": {
-      "type": "string"
-    },
     "device_id": {
       "type": "string"
     },
@@ -32,6 +29,18 @@
     "isFaceRegistered": {
       "type": "boolean",
       "default": false
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "students"
+    },
+    "attendences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::attendence.attendence",
+      "mappedBy": "student"
     }
   }
 }

@@ -502,6 +502,38 @@ export interface ApiAdminAdmin extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAttendenceAttendence extends Struct.CollectionTypeSchema {
+  collectionName: 'attendences';
+  info: {
+    displayName: 'attendence';
+    pluralName: 'attendences';
+    singularName: 'attendence';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currentStatus: Schema.Attribute.Enumeration<['present', 'absent']>;
+    date: Schema.Attribute.Date;
+    lecture: Schema.Attribute.Relation<'oneToOne', 'api::lecture.lecture'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::attendence.attendence'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    student: Schema.Attribute.Relation<'manyToOne', 'api::student.student'>;
+    type: Schema.Attribute.Enumeration<['manual', 'auto']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiClassClass extends Struct.CollectionTypeSchema {
   collectionName: 'classes';
   info: {
@@ -511,11 +543,6 @@ export interface ApiClassClass extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: false;
-    };
   };
   attributes: {
     batch_year: Schema.Attribute.Integer;
@@ -531,6 +558,7 @@ export interface ApiClassClass extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     semester: Schema.Attribute.Integer;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    students: Schema.Attribute.Relation<'oneToMany', 'api::student.student'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -622,7 +650,11 @@ export interface ApiStudentStudent extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    class_id: Schema.Attribute.String;
+    attendences: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::attendence.attendence'
+    >;
+    class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1237,6 +1269,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::admin.admin': ApiAdminAdmin;
+      'api::attendence.attendence': ApiAttendenceAttendence;
       'api::class.class': ApiClassClass;
       'api::classroom.classroom': ApiClassroomClassroom;
       'api::lecture.lecture': ApiLectureLecture;

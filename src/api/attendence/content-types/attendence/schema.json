@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attendences",
+  "info": {
+    "singularName": "attendence",
+    "pluralName": "attendences",
+    "displayName": "attendence"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "attendences"
+    },
+    "lecture": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::lecture.lecture"
+    },
+    "date": {
+      "type": "date"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "manual",
+        "auto"
+      ]
+    },
+    "currentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "present",
+        "absent"
+      ]
+    }
+  }
+}

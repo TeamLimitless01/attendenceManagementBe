@@ -9,11 +9,7 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": false
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
@@ -38,6 +34,12 @@
     },
     "batch_year": {
       "type": "integer"
+    },
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "class"
     }
   }
 }
