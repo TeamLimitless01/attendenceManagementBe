@@ -58,6 +58,12 @@
     },
     "day_of_week": {
       "type": "integer"
+    },
+    "students": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student.student",
+      "mappedBy": "lecture"
     }
   }
 }
